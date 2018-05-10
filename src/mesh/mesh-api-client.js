@@ -11,6 +11,11 @@ export default class MeshApiClient {
     this.client = axios.create({
       baseURL: apiUrl + API_PATH_PREFIX,
     })
+    this.meshToken
+  }
+
+  getMeshToken() {
+    return this.meshToken
   }
 
   logMeshApiResponse (msg, response) {
@@ -35,7 +40,9 @@ export default class MeshApiClient {
       password,
     }).then(response => {
       this.logMeshApiResponse('login response', response)
-      this.client.defaults.headers.common.Authorization = `Bearer ${response.data.token}`
+      this.meshToken = response.data.token
+      console.log('>>> Mesh token:', this.meshToken)
+      this.client.defaults.headers.common.Authorization = `Bearer ${this.meshToken}`
       return Promise.resolve(this)
     }).catch(error => {
       this.logMeshApiError('login response', error)

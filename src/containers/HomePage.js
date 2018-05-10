@@ -1,7 +1,8 @@
 import React from 'react'
-import { withSiteData, Link } from 'react-static'
+import { withSiteData, withRouteData, Link } from 'react-static'
 
-export default () => (
+export default withRouteData(({ featuredWorks }) => (
   <h1>Hellow world!</h1>
-)
+
+))
 
