@@ -32,6 +32,7 @@ const featuredArtworksQuery = `
       		... on featuredArtworks {
             title
             artworks {
+              uuid
               fields {
                 ... on artwork {
                   title
@@ -85,6 +86,7 @@ export default {
         component: 'src/containers/HomePage',
         getData: () => ({
           node: projectNode,
+          data: featuredWorks
         }),
       },
       {
