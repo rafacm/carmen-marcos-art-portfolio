@@ -1,79 +1,31 @@
 import MeshApiClient from './src/mesh/mesh-api-client'
 
-const MESH_HOST = 'http://localhost:8080'
+const MESH_HOST = 'http://cms.casadelhuerto.com'
 const MESH_USERNAME = 'webclient'
-const MESH_PASSWORD = 'webclient'
-const MESH_PROJECT_NAME = 'demo'
+const MESH_PASSWORD = 'toa6vaeZ'
+const MESH_PROJECT_NAME = 'carmen-marcos-art'
 const MESH_LANGUAGE = 'de'
 const MESH_API_CLIENT_LOGGING = true
 
 export default {
   getSiteData: () => ({
-    title: 'GENTICS Mesh React Static Eyxample',
+    title: 'Carmen Marcos',
+    siteRoot : 'http://carmen-marcos.art/'
+
   }),
   getRoutes: async () => {
     const meshApiClient =
       new MeshApiClient(MESH_HOST, MESH_PROJECT_NAME, MESH_LANGUAGE, MESH_API_CLIENT_LOGGING)
     const meshApiClientAsWebClientUser = await meshApiClient.login(MESH_USERNAME, MESH_PASSWORD)
-    const automobilesCategoryNode = await meshApiClientAsWebClientUser.getNodeByWebRootPath('/automobiles')
-    const yachtsCategoryNode = await meshApiClientAsWebClientUser.getNodeByWebRootPath('/yachts')
-    const aircraftsCategoryNode = await meshApiClientAsWebClientUser.getNodeByWebRootPath('/aircrafts')
-    const { data: allAutomobileNodes } =
-      await meshApiClientAsWebClientUser.getChildrenForNode(automobilesCategoryNode.uuid)
-    const { data: allYachtsNodes } =
-      await meshApiClientAsWebClientUser.getChildrenForNode(yachtsCategoryNode.uuid)
-    const { data: allAircraftNodes } =
-      await meshApiClientAsWebClientUser.getChildrenForNode(aircraftsCategoryNode.uuid)
+    const projectNode = await meshApiClientAsWebClientUser.getNodeByWebRootPath('/')
 
     return [
       {
         path: '/',
-        component: 'src/containers/Home',
-      },
-      {
-        path: '/automobiles',
-        component: 'src/containers/ProductList',
+        component: 'src/containers/HomePage',
         getData: () => ({
-          category: automobilesCategoryNode,
-          items: allAutomobileNodes,
+          node: projectNode,
         }),
-        children: allAutomobileNodes.map(item => ({
-          path: `/${item.fields.slug}`,
-          component: 'src/containers/ProductDetail',
-          getData: () => ({
-            item,
-          }),
-        })),
-      },
-      {
-        path: '/yachts',
-        component: 'src/containers/ProductList',
-        getData: () => ({
-          category: yachtsCategoryNode,
-          items: allYachtsNodes,
-        }),
-        children: allYachtsNodes.map(item => ({
-          path: `/${item.fields.slug}`,
-          component: 'src/containers/ProductDetail',
-          getData: () => ({
-            item,
-          }),
-        })),
-      },
-      {
-        path: '/aircrafts',
-        component: 'src/containers/ProductList',
-        getData: () => ({
-          category: aircraftsCategoryNode,
-          items: allAircraftNodes,
-        }),
-        children: allAircraftNodes.map(item => ({
-          path: `/${item.fields.slug}`,
-          component: 'src/containers/ProductDetail',
-          getData: () => ({
-            item,
-          }),
-        })),
       },
       {
         is404: true,
