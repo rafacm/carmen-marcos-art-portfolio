@@ -1,0 +1,50 @@
+{
+  "name": "theme",
+  "displayField": "title",
+  "segmentField": "slug",
+  "urlFields": [
+    "slug"
+  ],
+  "container": true,
+  "fields": [
+    {
+      "name": "title",
+      "label": "Title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "slug",
+      "label": "Slug",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "teaser",
+      "label": "Teaser",
+      "required": false,
+      "type": "html"
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "required": false,
+      "type": "html"
+    },
+    {
+      "name": "year",
+      "label": "Year",
+      "required": false,
+      "type": "number"
+    },
+    {
+      "name": "featuredArtwork",
+      "label": "",
+      "type": "node",
+      "required": false,
+      "allow": [
+        "artwork"
+      ]
+    }
+  ]
+}

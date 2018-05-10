@@ -1,0 +1,65 @@
+{
+  "name": "artwork",
+  "displayField": "title",
+  "segmentField": "slug",
+  "urlFields": [
+    "slug"
+  ],
+  "container": false,
+  "fields": [
+    {
+      "name": "title",
+      "label": "Title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "slug",
+      "label": "Slug",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "date",
+      "label": "Date",
+      "required": false,
+      "type": "date"
+    },
+    {
+      "name": "year",
+      "label": "Year",
+      "required": false,
+      "type": "number"
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "required": false,
+      "type": "number"
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "required": false,
+      "type": "number"
+    },
+    {
+      "name": "sold",
+      "label": "Sold",
+      "type": "boolean",
+      "required": false
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "type": "html",
+      "required": false
+    },
+    {
+      "name": "image",
+      "label": "Image",
+      "type": "binary",
+      "required": true
+    }
+  ]
+}

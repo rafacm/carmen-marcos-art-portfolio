@@ -1,0 +1,25 @@
+{
+  "name": "featuredArtworks",
+  "displayField": "title",
+  "segmentField": "",
+  "urlFields": [],
+  "container": false,
+  "fields": [
+    {
+      "name": "title",
+      "label": "Title",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "artworks",
+      "label": "Artworks",
+      "required": true,
+      "listType": "node",
+      "type": "list",
+      "allow": [
+        "artwork"
+      ]
+    }
+  ]
+}
