@@ -7,6 +7,8 @@ import ArtworkCard from '../components/ArtworkCard'
 
 class HomePage extends Component {
   render () {
+    const meshApi = this.props.meshApi
+    const meshProject = this.props.meshProject
     const node = this.props.node
     console.log('node: ', node)
     const data = this.props.data
@@ -27,9 +29,9 @@ class HomePage extends Component {
         map(rows, (row, rowNumber) => (
           <Row key={rowNumber}> {
           map(row, (artworkItem, index) => (
-            <Col key={index} className="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+            <Col key={index} className="artwork col-xs-12 col-sm-6 col-md-6 col-lg-3 text-center">
               <img className="img-fluid rounded" 
-                    src={`http://cms.casadelhuerto.com/api/v1/carmen-marcos-art/nodes/${artworkItem.uuid}/binary/image?w=300&h=300&crop=fp`}
+                    src={`${meshApi}/${meshProject}/nodes/${artworkItem.uuid}/binary/image?w=300&h=300&crop=fp`}
                     alt={artworkItem.fields.title} 
                     title={artworkItem.fields.title} />
             </Col>
@@ -41,5 +43,4 @@ class HomePage extends Component {
   }
 }
 
-export default withRouteData(HomePage)
-
+export default withSiteData(withRouteData(HomePage))

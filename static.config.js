@@ -1,9 +1,10 @@
 import MeshApiClient from './src/mesh/mesh-api-client'
 import { GraphQLClient } from 'graphql-request'
 
-const MESH_PROJECT_NAME = 'carmen-marcos-art'
+const MESH_PROJECT = 'carmen-marcos-art'
 const MESH_HOST = 'http://cms.casadelhuerto.com'
-const MESH_GRAPHQL_API = `${MESH_HOST}/api/v1/${MESH_PROJECT_NAME}/graphql/`
+const MESH_API = 'http://cms.casadelhuerto.com/api/v1'
+const MESH_GRAPHQL_API = `${MESH_API}/${MESH_PROJECT}/graphql/`
 const MESH_USERNAME = 'admin'
 const MESH_PASSWORD = 'Choh2ief'
 const MESH_LANGUAGE = 'de'
@@ -58,12 +59,13 @@ export default {
   getSiteData: () => ({
     title: 'Carmen Marcos',
     siteRoot: 'http://carmen-marcos.art/',
-    meshHost: MESH_HOST
-
+    meshHost: MESH_HOST,
+    meshApi: MESH_API,
+    meshProject: MESH_PROJECT,
   }),
   getRoutes: async () => {
     const meshApiClient =
-      new MeshApiClient(MESH_HOST, MESH_PROJECT_NAME, MESH_LANGUAGE, MESH_API_CLIENT_LOGGING)
+      new MeshApiClient(MESH_HOST, MESH_PROJECT, MESH_LANGUAGE, MESH_API_CLIENT_LOGGING)
     const meshApiClientAsWebClientUser = await meshApiClient.login(MESH_USERNAME, MESH_PASSWORD)
     const projectNode = await meshApiClientAsWebClientUser.getNodeByWebRootPath('/')
     const meshToken = meshApiClientAsWebClientUser.getMeshToken()
