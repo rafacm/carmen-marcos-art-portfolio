@@ -1,3 +1,11 @@
 .navbar img {
     width: 250px;
 }
+
+.album .row {
+    margin-top: 20px;
+}
+
+footer {
+    margin-top: 20px;
+}
