@@ -1,4 +1,5 @@
 import MeshApiClient from './src/mesh/mesh-api-client'
+import MeshQueries from './src/mesh/mesh-graphql-queries'
 import { GraphQLClient } from 'graphql-request'
 
 const MESH_PROJECT = 'carmen-marcos-art'
@@ -9,50 +10,6 @@ const MESH_USERNAME = 'admin'
 const MESH_PASSWORD = 'Choh2ief'
 const MESH_LANGUAGE = 'de'
 const MESH_API_CLIENT_LOGGING = true
-
-const whoamiQuery = `
-{
-  me { username, uuid }
-}
-`
-
-const featuredArtworksQuery = `
-{
-  node(path: "/") {
-    node {
-      uuid
-    }
-		children(filter: {
-      schema: {
-        is: featuredArtworks
-      }
-    }) {
-      elements {
-        uuid
-        fields {
-      		... on featuredArtworks {
-            title
-            artworks {
-              uuid
-              fields {
-                ... on artwork {
-                  title
-                  slug
-                  image {
-                    binaryUuid
-                    fileName
-                    width
-                    height
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}`
 
 
 export default {
@@ -76,20 +33,37 @@ export default {
       },
     })
 
-    const whoami = await graphqlClient.request(whoamiQuery)
+    const whoami = 
+      await graphqlClient.request(MeshQueries.whoamiQuery)
     console.log('whoami: ', whoami)
 
-    const featuredWorks = await graphqlClient.request(featuredArtworksQuery)
+    const featuredWorks = 
+      await graphqlClient.request(MeshQueries.featuredArtworksQuery)
     console.log('featuredWorks: ', featuredWorks)
 
+    const allArtworks = 
+      await graphqlClient.request(MeshQueries.allArtworksQuery)
+    console.log('allArtworks: ', allArtworks)
+    allArtworks.nodes.elements.map(artwork => 
+      console.log('  artwork: ', artwork)
+    )
     return [
       {
         path: '/',
         component: 'src/containers/HomePage',
         getData: () => ({
           node: projectNode,
-          data: featuredWorks
+          artworks: featuredWorks
         }),
+        children: allArtworks.nodes.elements.map(artwork => ({
+          path: `/artworks/${artwork.fields.slug}`,
+          component: 'src/containers/ArtworkPage',
+          getData: () => ({
+            title: artwork.fields.title,
+            node: artwork,
+            artwork
+          }),   
+        })),     
       },
       {
         is404: true,

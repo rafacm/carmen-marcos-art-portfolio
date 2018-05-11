@@ -10,30 +10,32 @@ class HomePage extends Component {
     const meshApi = this.props.meshApi
     const meshProject = this.props.meshProject
     const node = this.props.node
-    console.log('node: ', node)
-    const data = this.props.data
-    const featuredArtworks = data.node.children.elements[0].fields.artworks
-    console.log('featuredArtworks: ', featuredArtworks)
+    // console.log('node: ', node)
+    const artworks = this.props.artworks
+    const featuredArtworks = artworks.node.children.elements[0].fields.artworks
+    // console.log('featuredArtworks: ', featuredArtworks)
     const rows = chunk(featuredArtworks, 4)
-    console.log('rows', rows)
-    map(rows, (row, rowNumber) => {
-      console.log('  index: ', rowNumber)
-      console.log('  row: ', row)
-      map(row, (artworkItem, index) => {
-        console.log('    artworkItem: ', artworkItem)
-        console.log('    index: ', index)
-      })
-    })
+    // console.log('rows', rows)
+    // map(rows, (row, rowNumber) => {
+    //   console.log('  index: ', rowNumber)
+    //   console.log('  row: ', row)
+    //   map(row, (artworkItem, index) => {
+    //     console.log('    artworkItem: ', artworkItem)
+    //     console.log('    index: ', index)
+    //   })
+    // })
     return (
       <Container className="album"> {
         map(rows, (row, rowNumber) => (
           <Row key={rowNumber}> {
           map(row, (artworkItem, index) => (
             <Col key={index} className="artwork col-xs-12 col-sm-6 col-md-6 col-lg-3 text-center">
-              <img className="img-fluid rounded" 
+              <Link to={`/artworks/${artworkItem.fields.slug}`}>
+                <img className="img-fluid rounded" 
                     src={`${meshApi}/${meshProject}/nodes/${artworkItem.uuid}/binary/image?w=300&h=300&crop=fp`}
                     alt={artworkItem.fields.title} 
                     title={artworkItem.fields.title} />
+              </Link>
             </Col>
           ))}
           </Row>
