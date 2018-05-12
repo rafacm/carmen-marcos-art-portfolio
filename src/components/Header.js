@@ -9,7 +9,6 @@ const Header = () => (
         <title>
           {`${title ? `Carmen Marcos - ${title}` : 'Carmen Marcos'}`}
         </title>
-        <meta name="mesh-node-id" content={node.uuid} />
       </Head>
       <div className="container">
         <Navigation />

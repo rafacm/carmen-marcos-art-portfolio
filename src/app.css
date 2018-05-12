@@ -29,3 +29,7 @@ margin-top: 15px;
 .figure.artwork figcaption.figure-caption span.badge {
     margin-left: 5px;
 }
+
+.breadcrumb {
+    background-color: white;
+}

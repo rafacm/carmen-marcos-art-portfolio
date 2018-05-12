@@ -55,6 +55,25 @@ const allArtworksQuery = `
     }) {
       elements {
         uuid
+        path
+        breadcrumb {
+          uuid
+          schema {
+            name
+          }
+          path
+          displayName
+          fields {
+            ... on theme {
+              title
+              slug
+            }
+            ... on folder {
+              name
+              slug
+            }
+          }
+        }
         fields {
             ... on artwork {
                 title
