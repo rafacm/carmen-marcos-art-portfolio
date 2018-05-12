@@ -26,9 +26,7 @@ const featuredArtworksQuery = `
                 ... on artwork {
                   title
                   slug
-                  height
-                  width
-                    image {
+                  image {
                     binaryUuid
                     fileName
                     width
@@ -63,6 +61,7 @@ const allArtworksQuery = `
                 slug
                 height
                 width
+                year
                 image {
                   binaryUuid
                   fileName
@@ -71,7 +70,19 @@ const allArtworksQuery = `
                 }
             }
         }
-      }
+        tags {
+            size
+            elements {
+              uuid
+              name
+              tagFamily {
+                uuid
+                name
+              }
+            }
+          }
+  
+        }
     }
 }
 `
