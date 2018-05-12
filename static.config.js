@@ -17,6 +17,9 @@ const meshGraphqlClient = new GraphQLClient(MESH_GRAPHQL_API)
 //  },
 //})
 
+/* Question: can await be used outside async? */
+/* Nope: https://github.com/tc39/ecmascript-asyncawait/issues/9 */
+
 export default {
   getSiteData: () => ({
     title: 'Carmen Marcos',
@@ -26,34 +29,45 @@ export default {
     meshProject: MESH_PROJECT,
     //TODO: projectNode: projectNode
   }),
-  getRoutes: async () => {
+  getRoutes: async () => {    
     const projectNode = await meshRestApiClient.getNodeByWebRootPath('/')
     const whoami = await meshGraphqlClient.request(MeshQueries.whoamiQuery)
-    console.log('whoami: ', whoami)
-    
-    const featuredWorks = await meshGraphqlClient.request(MeshQueries.featuredArtworksQuery)
-    console.log('featuredWorks: ', featuredWorks)
-    
-    const allArtworks = await meshGraphqlClient.request(MeshQueries.allArtworksQuery)
-    console.log('allArtworks: ', allArtworks)
-    
+    console.log('static.config.js > whoami: ', whoami)
+
+    const featuredWorksForHomePage = await meshGraphqlClient.request(MeshQueries.featuredArtworksQuery)
+    console.log('static.config.js > featuredWorksForHomePage: ', featuredWorksForHomePage)
+
+    const generateAllArtworkRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
+      const allArtworks = await meshGraphqlClient.request(MeshQueries.allArtworksQuery)
+      console.log('static.config.js > allArtworks: ', allArtworks)
+
+      return allArtworks.nodes.elements.map( artwork => {
+        console.log('static.config.js > generateAllArtworkRoutes > artwork: ', artwork)
+        return {
+          path: artwork.path,
+          component: 'src/containers/ArtworkPage',
+          getData: () => ({
+            node: projectNode,
+            artwork
+          }),
+        }
+      })
+    }
+
+    const allArtworkRoutes = 
+      await generateAllArtworkRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
+    console.log('static.config.js > allArtworkRoutes: ', allArtworkRoutes)
+
     return [
       {
         path: '/',
         component: 'src/containers/HomePage',
         getData: () => ({
           node: projectNode,
-          artworks: featuredWorks
+          featuredArtworks: featuredWorksForHomePage
         }),
-        children: allArtworks.nodes.elements.map(artwork => ({
-          path: `/artworks/${artwork.fields.slug}`,
-          component: 'src/containers/ArtworkPage',
-          getData: () => ({
-            node: artwork,
-            artwork
-          }),   
-        })),     
       },
+      ...allArtworkRoutes,
       {
         is404: true,
         component: 'src/containers/404',

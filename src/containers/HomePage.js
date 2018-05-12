@@ -11,10 +11,12 @@ class HomePage extends Component {
     const meshProject = this.props.meshProject
     const node = this.props.node
     // console.log('node: ', node)
-    const artworks = this.props.artworks
-    const featuredArtworks = artworks.node.children.elements[0].fields.artworks
-    // console.log('featuredArtworks: ', featuredArtworks)
-    const rows = chunk(featuredArtworks, 4)
+    const featuredArtworks = this.props.featuredArtworks
+    console.log('HomePage > featuredArtworks: ', featuredArtworks)
+    // TODO: clean up path access
+    const artworksToShow = featuredArtworks.node.children.elements[0].fields.artworks
+    console.log('HomePage > artworksToShow: ', artworksToShow)
+    const rows = chunk(artworksToShow, 4)
     // console.log('rows', rows)
     // map(rows, (row, rowNumber) => {
     //   console.log('  index: ', rowNumber)
@@ -30,7 +32,7 @@ class HomePage extends Component {
           <Row key={rowNumber}> {
           map(row, (artworkItem, index) => (
             <Col key={index} className="artwork col-xs-12 col-sm-6 col-md-6 col-lg-3 text-center">
-              <Link to={`/artworks/${artworkItem.fields.slug}`}>
+              <Link to={artworkItem.path}>
                 <img className="img-fluid rounded" 
                     src={`${meshApi}/${meshProject}/nodes/${artworkItem.uuid}/binary/image?w=300&h=300&crop=fp`}
                     alt={artworkItem.fields.title} 

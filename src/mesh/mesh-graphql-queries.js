@@ -22,6 +22,7 @@ const featuredArtworksQuery = `
             title
             artworks {
               uuid
+              path
               fields {
                 ... on artwork {
                   title
@@ -63,16 +64,6 @@ const allArtworksQuery = `
           }
           path
           displayName
-          fields {
-            ... on theme {
-              title
-              slug
-            }
-            ... on folder {
-              name
-              slug
-            }
-          }
         }
         fields {
             ... on artwork {
