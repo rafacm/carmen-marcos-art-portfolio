@@ -63,7 +63,7 @@ export default {
      * Themes
      */
     const generateAllThemePagesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
-      const allThemes = await meshGraphqlClient.request(MeshQueries.allThemesQuery)
+      const allThemes = await meshGraphqlClient.request(MeshQueries.allThemesWithArtworksQuery)
       console.log('static.config.js > allThemes: ', allThemes)
 
       return allThemes.nodes.elements.map( theme => {

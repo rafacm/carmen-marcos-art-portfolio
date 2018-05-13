@@ -99,7 +99,7 @@ const allArtworksQuery = `
 }
 `
 
-const allThemesQuery = `
+const allThemesWithArtworksQuery = `
 {
   nodes(perPage: 100, filter: {schema: {is: theme}}) {
     elements {
@@ -135,6 +135,25 @@ const allThemesQuery = `
                   width
                   height
                 }
+              }
+            }
+          }
+        }
+      }
+      children {
+        elements {
+          uuid
+          path
+          displayName
+          fields {
+            ... on artwork {
+              title
+              slug
+              image {
+                binaryUuid
+                fileName
+                width
+                height
               }
             }
           }
@@ -192,5 +211,5 @@ const allFoldersQuery = `
 }
 `
 
-export default { whoamiQuery, featuredArtworksQuery, allArtworksQuery, allThemesQuery, allFoldersQuery }
+export default { whoamiQuery, featuredArtworksQuery, allArtworksQuery, allThemesWithArtworksQuery, allFoldersQuery }
 

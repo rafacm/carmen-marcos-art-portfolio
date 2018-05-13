@@ -10,8 +10,8 @@ class ArtworkCard extends React.Component {
     height: PropTypes.number
   }
   static defaultProps = {
-    width: 300,
-    height: 300
+    width: 400,
+    height: 400
   }
   render () {
     return (
@@ -20,7 +20,7 @@ class ArtworkCard extends React.Component {
           <img className="card-img-top rounded" 
               src={`${this.props.meshApi}/${this.props.meshProject}/nodes/${this.props.artwork.uuid}/binary/image?w=${this.props.width}&h=${this.props.height}&crop=fp`}
               alt={this.props.artwork.fields.title} 
-              title={this.props.artwork.fields.title} />
+              title={this.props.artwork.fields.title}/>
         </Link>
       </Card>
     )
