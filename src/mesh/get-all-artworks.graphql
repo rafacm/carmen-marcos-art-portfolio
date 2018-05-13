@@ -1,0 +1,51 @@
+query getAllArtworksQuery {
+    nodes(perPage: 100, filter: {
+      schema: { is: artwork }
+      fields: {
+        artwork: {
+          # TODO: filter expression for not null value?
+          slug: { regex: "[a-z]+" }
+        }
+      }  
+    }) {
+      elements {
+        uuid
+        path
+        breadcrumb {
+          uuid
+          schema {
+            name
+          }
+          path
+          displayName
+        }
+        fields {
+            ... on artwork {
+                title
+                slug
+                height
+                width
+                year
+                image {
+                  binaryUuid
+                  fileName
+                  width
+                  height
+                }
+            }
+        }
+        tags {
+            size
+            elements {
+              uuid
+              name
+              tagFamily {
+                uuid
+                name
+              }
+            }
+          }
+  
+        }
+    }
+}

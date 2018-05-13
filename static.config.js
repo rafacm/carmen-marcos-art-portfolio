@@ -1,6 +1,7 @@
 import MeshApiClient from './src/mesh/mesh-api-client'
 import MeshQueries from './src/mesh/mesh-graphql-queries'
 import { GraphQLClient } from 'graphql-request'
+import getAllArtworksQuery from './src/mesh/get-all-artworks.graphql'
 
 const MESH_PROJECT = 'carmen-marcos-art'
 const MESH_HOST = 'http://cms.casadelhuerto.com'
@@ -11,11 +12,6 @@ const MESH_API_CLIENT_LOGGING = true
 
 const meshRestApiClient = new MeshApiClient(MESH_HOST, MESH_PROJECT, MESH_LANGUAGE, MESH_API_CLIENT_LOGGING)
 const meshGraphqlClient = new GraphQLClient(MESH_GRAPHQL_API)
-//const graphqlClient = new GraphQLClient(MESH_GRAPHQL_API, {
-//  headers: {
-//    Authorization: `Bearer ${meshToken}`,
-//  },
-//})
 
 /* Question: can await be used outside async? */
 /* Nope: https://github.com/tc39/ecmascript-asyncawait/issues/9 */
@@ -38,7 +34,7 @@ export default {
     console.log('static.config.js > featuredWorksForHomePage: ', featuredWorksForHomePage)
 
     const generateAllArtworkRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
-      const allArtworks = await meshGraphqlClient.request(MeshQueries.allArtworksQuery)
+      const allArtworks = await meshGraphqlClient.request(getAllArtworksQuery)
       console.log('static.config.js > allArtworks: ', allArtworks)
 
       return allArtworks.nodes.elements.map( artwork => {

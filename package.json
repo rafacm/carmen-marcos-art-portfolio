@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^4.1.1",
+    "graphql": "^0.13.2",
     "graphql-request": "^1.6.0",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
@@ -24,6 +25,7 @@
     "reactstrap": "^6.0.1"
   },
   "devDependencies": {
+    "babel-plugin-inline-import-graphql-ast": "^2.3.7",
     "eslint-config-react-tools": "1.x.x",
     "serve": "^6.1.0"
   }
