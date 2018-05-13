@@ -8,13 +8,13 @@ import map from 'lodash/map'
 
 class Breadcrumb extends Component {
     static propTypes = {
-      crumbs: PropTypes.arrayOf(PropTypes.object),
+      breadcrumb: PropTypes.arrayOf(PropTypes.object),
     }
     static defaultProps = {
       crumbs: [],
     }
     render () {
-      const crumbs = this.props.crumbs
+      const crumbs = this.props.breadcrumb
       //console.log('Breadcrumb > crumbs: ', crumbs)
       // TODO: debug why the following does not work
       //const reversedCrumbs = crumbs.reverse() // mutates in place
