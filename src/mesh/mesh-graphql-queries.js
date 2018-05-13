@@ -96,5 +96,50 @@ const allArtworksQuery = `
     }
 }
 `
-export default { whoamiQuery, featuredArtworksQuery, allArtworksQuery }
+const allThemes = 
+`query {
+  nodes(perPage: 100, filter: {schema: {is: theme}}) {
+    elements {
+      uuid
+      path
+      breadcrumb {
+        uuid
+        schema {
+          name
+        }
+        path
+        displayName
+      }
+      fields {
+        ... on theme {
+          title
+          slug
+          year
+          teaser
+          description
+          featuredArtwork {
+            uuid
+            path
+            displayName
+            fields {
+              ... on artwork {
+                title
+                slug
+                image {
+                  binaryUuid
+                  fileName
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+export default { whoamiQuery, featuredArtworksQuery, allArtworksQuery, allThemes }
 

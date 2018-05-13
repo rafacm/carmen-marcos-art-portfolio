@@ -1,0 +1,10 @@
+- why are we passing projectNode as node in the routes?!
+        return {
+          path: artwork.path,
+          component: 'src/pages/ArtworkPage',
+          getData: () => ({
+            node: projectNode,
+            artwork
+          }),
+        }
+

@@ -45,7 +45,7 @@ export default {
         console.log('static.config.js > generateAllArtworkRoutes > artwork: ', artwork)
         return {
           path: artwork.path,
-          component: 'src/containers/ArtworkPage',
+          component: 'src/pages/ArtworkPage',
           getData: () => ({
             node: projectNode,
             artwork
@@ -54,20 +54,44 @@ export default {
       })
     }
 
+    // We cannot use await at top-level
     const allArtworkRoutes = 
       await generateAllArtworkRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
     console.log('static.config.js > allArtworkRoutes: ', allArtworkRoutes)
 
+    const generateAllThemesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
+      const allThemes = await meshGraphqlClient.request(MeshQueries.allThemes)
+      console.log('static.config.js > allThemes: ', allThemes)
+
+      return allThemes.nodes.elements.map( theme => {
+        console.log('static.config.js > generateAllThemesRoutes > themes: ', theme)
+        return {
+          path: theme.path,
+          component: 'src/pages/ThemePage',
+          getData: () => ({
+            node: projectNode,
+            theme
+          }),
+        }
+      })
+    }
+
+    // We cannot use await at top-level
+    const allThemesRoutes = 
+      await generateAllThemesRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
+    console.log('static.config.js > allThemesRoutes: ', allThemesRoutes)
+
     return [
       {
         path: '/',
-        component: 'src/containers/HomePage',
+        component: 'src/pages/HomePage',
         getData: () => ({
           node: projectNode,
           featuredArtworks: featuredWorksForHomePage
         }),
       },
       ...allArtworkRoutes,
+      ...allThemesRoutes,
       {
         is404: true,
         component: 'src/containers/404',
