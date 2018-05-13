@@ -47,7 +47,8 @@ export default {
           path: artwork.path,
           component: 'src/pages/ArtworkPage',
           getData: () => ({
-            node: projectNode,
+            node: artwork,
+            breadcrumb: artwork.breadcrumb,
             artwork
           }),
         }
@@ -72,7 +73,8 @@ export default {
           path: theme.path,
           component: 'src/pages/ThemePage',
           getData: () => ({
-            node: projectNode,
+            node: theme,
+            breadcrumb: theme.breadcrumb,
             theme
           }),
         }
@@ -97,7 +99,8 @@ export default {
           path: folder.path,
           component: 'src/pages/FolderPage',
           getData: () => ({
-            node: projectNode,
+            node: folder,
+            breadcrumb: folder.breadcrumb,
             folder
           }),
         }

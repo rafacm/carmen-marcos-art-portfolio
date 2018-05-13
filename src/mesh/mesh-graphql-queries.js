@@ -201,6 +201,23 @@ const allFoldersQuery = `
                 slug
                 year
                 teaser
+                featuredArtwork {
+                  uuid
+                  path
+                  displayName
+                  fields {
+                    ... on artwork {
+                      title
+                      slug
+                      image {
+                        binaryUuid
+                        fileName
+                        width
+                        height
+                      }
+                    }
+                  }
+                }
               }
             }
           }

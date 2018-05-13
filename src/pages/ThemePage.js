@@ -1,22 +1,26 @@
 import React, { Component, Fragment } from 'react'
 import { withSiteData, withRouteData, Link } from 'react-static'
+import PropTypes from 'prop-types'
 import { Container, Row, Col } from 'reactstrap'
 import Breadcrumb from '../components/Breadcrumb'
 import ArtworksGrid from '../components/ArtworksGrid';
 
 class ThemesPage extends React.Component {
-
+    static propTypes = {
+        breadcrumb: PropTypes.arrayOf(PropTypes.object).isRequired,
+        node: PropTypes.arrayOf(PropTypes.object).isRequired,
+        theme: PropTypes.arrayOf(PropTypes.object).isRequired,
+      }
+      static defaultProps = {
+        crumbs: [],
+      }  
     render() {
-        const meshApi = this.props.meshApi
-        const meshProject = this.props.meshProject    
-        const theme = this.props.theme
-        const breadcrumb = theme.breadcrumb
         const themeArtworks = this.props.theme.children.elements
         return (
             <Fragment>
-                <Breadcrumb breadcrumb={breadcrumb} currentNode={theme} />
+                <Breadcrumb breadcrumb={this.props.breadcrumb} currentNode={this.props.node} />
                 <Container>
-                    <h1>{theme.fields.title}</h1>
+                    <h1>{this.props.theme.fields.title}</h1>
                     <ArtworksGrid artworks={themeArtworks} />
                 </Container>
             </Fragment>    

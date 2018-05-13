@@ -9,10 +9,10 @@ import map from 'lodash/map'
 class Breadcrumb extends Component {
     static propTypes = {
       breadcrumb: PropTypes.arrayOf(PropTypes.object).isRequired,
-      currentNode: PropTypes.arrayOf(PropTypes.object).isRequired,
+      currentNode: PropTypes.object.isRequired,
     }
     static defaultProps = {
-      crumbs: [],
+      breadcrumb: [],
     }
     render () {
       const crumbs = this.props.breadcrumb
