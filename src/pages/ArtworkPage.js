@@ -14,7 +14,7 @@ class ArtworkPage extends Component {
         //console.log('ArtworkPage > breadcrumb: ', JSON.stringify(breadcrumbs))
         return (
             <Fragment>
-                <Breadcrumb breadcrumb={breadcrumb} node={artwork} />
+                <Breadcrumb breadcrumb={breadcrumb} currentNode={artwork} />
                 <Container>
                     <figure className="figure artwork">
                         <img className="figure-img img-fluid rounded" src={`${meshApi}/${meshProject}/nodes/${artwork.uuid}/binary/image?w=1280`} title={artwork.fields.title} alt={artwork.fields.title}/>

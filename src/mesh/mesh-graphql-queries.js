@@ -57,6 +57,7 @@ const allArtworksQuery = `
       elements {
         uuid
         path
+        displayName
         breadcrumb {
           uuid
           schema {
@@ -96,12 +97,13 @@ const allArtworksQuery = `
     }
 }
 `
-const allThemes = 
-`query {
+const allThemesQuery = `
+{
   nodes(perPage: 100, filter: {schema: {is: theme}}) {
     elements {
       uuid
       path
+      displayName
       breadcrumb {
         uuid
         schema {
@@ -141,5 +143,52 @@ const allThemes =
 }
 `
 
-export default { whoamiQuery, featuredArtworksQuery, allArtworksQuery, allThemes }
+const allFoldersQuery = ` 
+{
+  node(path: "/") {
+    node {
+      uuid
+    }
+    children(filter: {
+      schema: {
+        is: folder
+      }
+    }) {
+      elements {
+        uuid
+        path
+        displayName
+        breadcrumb {
+          uuid
+          schema {
+            name
+          }
+          path
+          displayName
+        }
+        children {
+          elements {
+            uuid
+            path
+            displayName
+            schema {
+              name
+            }
+            fields {
+              ... on theme {
+                title
+                slug
+                year
+                teaser
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+export default { whoamiQuery, featuredArtworksQuery, allArtworksQuery, allThemesQuery, allFoldersQuery }
 

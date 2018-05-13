@@ -1,25 +1,25 @@
 import React, { Component, Fragment } from 'react'
 import { withSiteData, withRouteData, Link } from 'react-static'
-import { Container, Row, Col } from 'reactstrap'
+import { Container } from 'reactstrap'
 import Breadcrumb from '../components/Breadcrumb'
 
-class ThemesPage extends React.Component {
-
+class FolderPage extends Component {
     render() {
         const meshApi = this.props.meshApi
         const meshProject = this.props.meshProject    
-        const theme = this.props.theme
-        const breadcrumb = theme.breadcrumb
+        const folder = this.props.folder
+        const breadcrumb = folder.breadcrumb
+        const children = folder.children.elements
 
         return (
             <Fragment>
-                <Breadcrumb breadcrumb={breadcrumb} currentNode={theme} />
+                <Breadcrumb breadcrumb={breadcrumb} currentNode={folder} />
                 <Container>
-                    <h1>{theme.fields.title}</h1>
+                    <h1>{folder.displayName}</h1>
                 </Container>
             </Fragment>    
         )
     }
 }
 
-export default withSiteData(withRouteData(ThemesPage))
+export default withSiteData(withRouteData(FolderPage))

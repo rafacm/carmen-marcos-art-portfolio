@@ -17,9 +17,6 @@ const meshGraphqlClient = new GraphQLClient(MESH_GRAPHQL_API)
 //  },
 //})
 
-/* Question: can await be used outside async? */
-/* Nope: https://github.com/tc39/ecmascript-asyncawait/issues/9 */
-
 export default {
   getSiteData: () => ({
     title: 'Carmen Marcos',
@@ -37,12 +34,15 @@ export default {
     const featuredWorksForHomePage = await meshGraphqlClient.request(MeshQueries.featuredArtworksQuery)
     console.log('static.config.js > featuredWorksForHomePage: ', featuredWorksForHomePage)
 
-    const generateAllArtworkRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
+    /*
+     * Artworks
+     */
+    const generateAllArtworkPagesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
       const allArtworks = await meshGraphqlClient.request(MeshQueries.allArtworksQuery)
       console.log('static.config.js > allArtworks: ', allArtworks)
 
       return allArtworks.nodes.elements.map( artwork => {
-        console.log('static.config.js > generateAllArtworkRoutes > artwork: ', artwork)
+        console.log('static.config.js > generateAllArtworkPagesRoutes > artwork: ', artwork)
         return {
           path: artwork.path,
           component: 'src/pages/ArtworkPage',
@@ -54,17 +54,20 @@ export default {
       })
     }
 
-    // We cannot use await at top-level
-    const allArtworkRoutes = 
-      await generateAllArtworkRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
-    console.log('static.config.js > allArtworkRoutes: ', allArtworkRoutes)
+    // We cannot use await at top-level: https://github.com/tc39/ecmascript-asyncawait/issues/9
+    const allArtworkPagesRoutes = 
+      await generateAllArtworkPagesRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
+    console.log('static.config.js > allArtworkPagesRoutes: ', allArtworkPagesRoutes)
 
-    const generateAllThemesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
-      const allThemes = await meshGraphqlClient.request(MeshQueries.allThemes)
+    /*
+     * Themes
+     */
+    const generateAllThemePagesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
+      const allThemes = await meshGraphqlClient.request(MeshQueries.allThemesQuery)
       console.log('static.config.js > allThemes: ', allThemes)
 
       return allThemes.nodes.elements.map( theme => {
-        console.log('static.config.js > generateAllThemesRoutes > themes: ', theme)
+        console.log('static.config.js > generateAllThemePagesRoutes > themes: ', theme)
         return {
           path: theme.path,
           component: 'src/pages/ThemePage',
@@ -76,10 +79,35 @@ export default {
       })
     }
 
-    // We cannot use await at top-level
-    const allThemesRoutes = 
-      await generateAllThemesRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
-    console.log('static.config.js > allThemesRoutes: ', allThemesRoutes)
+    // We cannot use await at top-level: https://github.com/tc39/ecmascript-asyncawait/issues/9
+    const allThemePagesRoutes = 
+      await generateAllThemePagesRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
+    console.log('static.config.js > allThemePagesRoutes: ', allThemePagesRoutes)
+
+    /*
+     * Folders
+     */
+    const generateAllFolderPagesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
+      const allFolders = await meshGraphqlClient.request(MeshQueries.allFoldersQuery)
+      console.log('static.config.js > allFolders: ', allFolders)
+
+      return allFolders.node.children.elements.map( folder => {
+        console.log('static.config.js > generateAllFolderPagesRoutes > folders: ', folder)
+        return {
+          path: folder.path,
+          component: 'src/pages/FolderPage',
+          getData: () => ({
+            node: projectNode,
+            folder
+          }),
+        }
+      })
+    }
+
+    // We cannot use await at top-level: https://github.com/tc39/ecmascript-asyncawait/issues/9
+    const allFolderPagesRoutes = 
+      await generateAllFolderPagesRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
+    console.log('static.config.js > allFolderPagesRoutes: ', allFolderPagesRoutes)
 
     return [
       {
@@ -90,8 +118,9 @@ export default {
           featuredArtworks: featuredWorksForHomePage
         }),
       },
-      ...allArtworkRoutes,
-      ...allThemesRoutes,
+      ...allFolderPagesRoutes,
+      ...allThemePagesRoutes,
+      ...allArtworkPagesRoutes,
       {
         is404: true,
         component: 'src/containers/404',

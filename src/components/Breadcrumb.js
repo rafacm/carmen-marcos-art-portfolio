@@ -8,7 +8,8 @@ import map from 'lodash/map'
 
 class Breadcrumb extends Component {
     static propTypes = {
-      breadcrumb: PropTypes.arrayOf(PropTypes.object),
+      breadcrumb: PropTypes.arrayOf(PropTypes.object).isRequired,
+      currentNode: PropTypes.arrayOf(PropTypes.object).isRequired,
     }
     static defaultProps = {
       crumbs: [],
@@ -21,7 +22,7 @@ class Breadcrumb extends Component {
       //const reversedCrumbs = reverse(crumbs) // ??
       const reversedCrumbs = reverse(map(crumbs, clone))
       //console.log('Breadcrumb > crumbs.reverse(): ', reversedCrumbs)
-      const node = this.props.node
+      const currentNode = this.props.currentNode
       //console.log('Breadcrumb > node: ', node)
       return (
           <nav aria-label="breadcrumb">
@@ -38,7 +39,7 @@ class Breadcrumb extends Component {
                             ))
                         }
                           <li key={crumbs.length} className="breadcrumb-item active" aria-current="page">
-                            {node.fields.title}
+                            {currentNode.displayName}
                           </li>
                     </Fragment>
                 </ol>
