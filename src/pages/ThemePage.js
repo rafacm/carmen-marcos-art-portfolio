@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Container, Row, Col } from 'reactstrap'
 import Breadcrumb from '../components/Breadcrumb'
 import ArtworksGrid from '../components/ArtworksGrid';
+import stripHtml from 'string-strip-html';
 
 class ThemesPage extends React.Component {
     static propTypes = {
@@ -21,6 +22,7 @@ class ThemesPage extends React.Component {
                 <Breadcrumb breadcrumb={this.props.breadcrumb} currentNode={this.props.node} />
                 <Container>
                     <h1>{this.props.theme.fields.title}</h1>
+                    <p>{stripHtml(this.props.theme.fields.teaser)}</p>
                     <ArtworksGrid artworks={themeArtworks} />
                 </Container>
             </Fragment>    

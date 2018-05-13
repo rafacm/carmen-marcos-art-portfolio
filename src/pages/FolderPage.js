@@ -4,6 +4,9 @@ import { withSiteData, withRouteData, Link } from 'react-static'
 import { Container, Row, Col, Card } from 'reactstrap'
 import Breadcrumb from '../components/Breadcrumb'
 import map from 'lodash/map'
+import reverse from 'lodash/reverse'
+import clone from 'lodash/clone'
+import sortBy from 'lodash/sortBy'
 import Dotdotdot from 'react-dotdotdot'
 import stripHtml from 'string-strip-html';
 
@@ -18,6 +21,7 @@ class FolderPage extends Component {
       }
       render() {
         const themes = this.props.folder.children.elements
+        const reverseSortedThemes = reverse(sortBy(map(themes, clone), theme => theme.fields.year))
 
         return (
             <Fragment>
