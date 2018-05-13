@@ -18,7 +18,6 @@ class ArtworkGrid extends Component {
 
         return (
             <div className="artwork-grid album">
-                <Container>
                     {
                         map(rows, (row, rowNumber) => (
                             <Row key={rowNumber} className="py-4"> {
@@ -30,7 +29,6 @@ class ArtworkGrid extends Component {
                             </Row>
                         ))
                     }
-                </Container>
             </div>
         )
     }

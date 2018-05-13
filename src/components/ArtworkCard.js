@@ -15,7 +15,7 @@ class ArtworkCard extends React.Component {
   }
   render () {
     return (
-      <Card className="w-20 box-shadow">
+      <Card className="artwork-card w-20 box-shadow">
         <Link to={this.props.artwork.path}>
           <img className="card-img-top rounded" 
               src={`${this.props.meshApi}/${this.props.meshProject}/nodes/${this.props.artwork.uuid}/binary/image?w=${this.props.width}&h=${this.props.height}&crop=fp`}
