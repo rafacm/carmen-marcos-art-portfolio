@@ -6,30 +6,6 @@ footer {
     margin-top: 20px;
 }
 
-.album .row {
-    margin-top: 20px;
-}
-
-.album .row:first-child {
-margin-top: 0px;
-}
-
-.album .row img {
-margin-top: 15px;
-}
-
-.album .row .artwork {
-    overflow-x: hidden;
-    overflow-y: visible;
-    background: #fff;
-    transition: box-shadow 250ms ease-out;
-    box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.025);
-}
-
-.figure.artwork figcaption.figure-caption span.badge {
-    margin-left: 5px;
-}
-
 .breadcrumb {
     background-color: white;
 }

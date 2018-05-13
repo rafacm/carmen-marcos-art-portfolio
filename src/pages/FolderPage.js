@@ -16,6 +16,7 @@ class FolderPage extends Component {
                 <Breadcrumb breadcrumb={breadcrumb} currentNode={folder} />
                 <Container>
                     <h1>{folder.displayName}</h1>
+                    
                 </Container>
             </Fragment>    
         )

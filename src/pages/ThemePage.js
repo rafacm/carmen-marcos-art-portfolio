@@ -16,6 +16,7 @@ class ThemesPage extends React.Component {
                 <Breadcrumb breadcrumb={breadcrumb} currentNode={theme} />
                 <Container>
                     <h1>{theme.fields.title}</h1>
+                    
                 </Container>
             </Fragment>    
         )

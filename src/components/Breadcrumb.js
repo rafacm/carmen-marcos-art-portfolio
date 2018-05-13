@@ -25,6 +25,7 @@ class Breadcrumb extends Component {
       const currentNode = this.props.currentNode
       //console.log('Breadcrumb > node: ', node)
       return (
+        <Container>
           <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
                   <Fragment>
@@ -44,6 +45,7 @@ class Breadcrumb extends Component {
                     </Fragment>
                 </ol>
             </nav>
+        </Container>
       )
     }
 }

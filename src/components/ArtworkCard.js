@@ -1,18 +1,30 @@
 import React from 'react'
+import { withSiteData, withRouteData, Link } from 'react-static'
 import * as PropTypes from 'prop-types'
-import { Link } from 'react-static'
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap'
 
 class ArtworkCard extends React.Component {
   static propTypes = {
     artwork: PropTypes.object.isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number
+  }
+  static defaultProps = {
+    width: 300,
+    height: 300
   }
   render () {
-    const artwork = this.props.artwork
     return (
-      <img key={artwork.uuid} src={`http://cms.casadelhuerto.com/api/v1/carmen-marcos-art/nodes/${artwork.uuid}/binary/image?w=500`}/>
+      <Card className="mb-4 box-shadow">
+        <Link to={this.props.artwork.path}>
+          <img className="card-img-top rounded" 
+              src={`${this.props.meshApi}/${this.props.meshProject}/nodes/${this.props.artwork.uuid}/binary/image?w=${this.props.width}&h=${this.props.height}&crop=fp`}
+              alt={this.props.artwork.fields.title} 
+              title={this.props.artwork.fields.title} />
+        </Link>
+      </Card>
     )
   }
 }
 
-export default ArtworkCard
+export default withSiteData(ArtworkCard)

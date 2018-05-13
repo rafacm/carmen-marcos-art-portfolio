@@ -11,7 +11,7 @@ const App = () => (
   <Router>
     <Fragment>
       <Header />
-      <main role="main" className="container">
+      <main role="main">
         <Routes />
       </main>
       <Footer />

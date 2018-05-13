@@ -41,7 +41,8 @@ const featuredArtworksQuery = `
       }
     }
   }
-}`
+}
+`
 
 const allArtworksQuery = `
 {
@@ -97,6 +98,7 @@ const allArtworksQuery = `
     }
 }
 `
+
 const allThemesQuery = `
 {
   nodes(perPage: 100, filter: {schema: {is: theme}}) {
