@@ -3,11 +3,11 @@ import { RouteData, Head } from 'react-static'
 import Navigation from '../components/Navigation'
 
 const Header = () => (
-  <RouteData render={({ title, node }) => (
+  <RouteData render={({ node }) => (
     <div>
       <Head>
         <title>
-          {`${title ? `Carmen Marcos - ${title}` : 'Carmen Marcos'}`}
+          {`${node.displayName ? `Carmen Marcos - ${node.displayName}` : 'Carmen Marcos'}`}
         </title>
       </Head>
       <div className="container">
