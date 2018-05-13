@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'reactstrap'
 import map from 'lodash/map'
 import chunk from 'lodash/chunk'
 import ArtworksGrid from '../components/ArtworksGrid';
+import ExhibitionAnnouncement from '../components/ExhibitionAnnouncement'
 
 class HomePage extends Component {
   render () {
@@ -18,7 +19,10 @@ class HomePage extends Component {
     console.log('HomePage > artworksToShow: ', artworksToShow)
 
     return (
-      <ArtworksGrid artworks={artworksToShow} />
+        <Container>
+          <ExhibitionAnnouncement/>
+          <ArtworksGrid artworks={artworksToShow} />
+        </Container>
     )
   }
 }
