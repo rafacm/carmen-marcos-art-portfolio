@@ -21,14 +21,14 @@ class ThemeCard extends React.Component {
         <div className="col-md-4">
             <Card className="mb-4 box-shadow">
             <Link to={theme.path}><img className="card-img-top" src={`${this.props.meshApi}/${this.props.meshProject}/nodes/${theme.fields.featuredArtwork.uuid}/binary/image?w=${this.props.width}&h=${this.props.height}&crop=fp`}/></Link>
-                <div class="card-body">
-                    <h5 class="card-title">{theme.displayName}</h5>
-                    <p class="card-text">
+                <div className="card-body">
+                    <h5 className="card-title">{theme.displayName}</h5>
+                    <p className="card-text">
                         <Dotdotdot clamp={4}>
                             {stripHtml(theme.fields.teaser)}
                         </Dotdotdot>
                     </p>
-                    <div class="btn-group">
+                    <div className="btn-group">
                         <button type="button" className="btn btn-sm btn-outline-primary"><Link to={theme.path}>View</Link></button>
                     </div>
                 </div>

@@ -14,21 +14,17 @@ class ArtworkGrid extends Component {
         artworks: []
     }
     render() {
-        const rows = chunk(this.props.artworks, 4)
-
         return (
             <div className="artwork-grid album">
+                <Row className=""> 
                     {
-                        map(rows, (row, rowNumber) => (
-                            <Row key={rowNumber} className="py-4"> {
-                                map(row, (artworkItem, index) => (
-                                    <Col key={index} md="3" xs="12">
-                                        <ArtworkCard artwork={artworkItem}/>
-                                    </Col>
-                                ))}
-                            </Row>
+                        map(this.props.artworks, (artwork, index) => (
+                            <Col key={index} md="3">
+                                <ArtworkCard artwork={artwork}/>
+                            </Col>
                         ))
                     }
+                </Row>
             </div>
         )
     }

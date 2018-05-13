@@ -9,6 +9,8 @@ const MESH_GRAPHQL_API = `${MESH_API}/${MESH_PROJECT}/graphql/`
 const MESH_LANGUAGE = 'de'
 const MESH_API_CLIENT_LOGGING = true
 
+const SITE_ROOT = 'http://carmen-marcos.art/'
+
 const meshRestApiClient = new MeshApiClient(MESH_HOST, MESH_PROJECT, MESH_LANGUAGE, MESH_API_CLIENT_LOGGING)
 const meshGraphqlClient = new GraphQLClient(MESH_GRAPHQL_API)
 //const graphqlClient = new GraphQLClient(MESH_GRAPHQL_API, {
@@ -20,7 +22,7 @@ const meshGraphqlClient = new GraphQLClient(MESH_GRAPHQL_API)
 export default {
   getSiteData: () => ({
     title: 'Carmen Marcos',
-    siteRoot: 'http://carmen-marcos.art/',
+    siteRoot: SITE_ROOT,
     meshHost: MESH_HOST,
     meshApi: MESH_API,
     meshProject: MESH_PROJECT,
@@ -127,6 +129,9 @@ export default {
       {
         is404: true,
         component: 'src/containers/404',
+        getData: () => ({
+          node: { displayName: 'Error' },
+        }),
       },
     ]
   },
