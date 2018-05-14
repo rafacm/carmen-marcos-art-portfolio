@@ -13,8 +13,8 @@ class ExhibitionAnnouncement extends Component {
                             <div className="mb-1 text-muted">Saturday, May 26th @ 14:00</div>
                             <a href="https://www.google.at/maps/place/Sterngasse+5,+2074+Unterretzbach/@48.7676147,16.0036343,182m/data=!3m1!1e3!4m5!3m4!1s0x476d57a8cc7ea4b1:0xa63dbbb925122f61!8m2!3d48.7676194!4d16.0040441">Sterngasse 5, 2074 Unterretzbach</a>
                         </div>
-                        <img className="card-img-right flex-auto d-none d-md-block" src="http://cms.casadelhuerto.com/api/v1/carmen-marcos-art/nodes/29a1108e631147d3a1108e6311c7d378/binary/image?w=225&h=150&crop=fp" />
-                    </div>
+                        <img className="card-img-right flex-auto d-none d-md-block" src="http://cms.casadelhuerto.com/api/v1/carmen-marcos-art/nodes/7f6bbb110c254633abbb110c25c6334b/binary/image?h=175"/>
+                        </div>
                 </div>
                 <div className="col-md-6">
                     <div className="card flex-md-row mb-4 box-shadow h-md-250">
@@ -26,7 +26,7 @@ class ExhibitionAnnouncement extends Component {
 
 </a>
                         </div>
-                        <img className="card-img-right flex-auto d-none d-md-block" src="http://cms.casadelhuerto.com/api/v1/carmen-marcos-art/nodes/99a57a95f7e84ebba57a95f7e8eebbd2/binary/image?w=225&h=150&crop=fp" />
+                        <img className="card-img-right flex-auto d-none d-md-block" src="http://cms.casadelhuerto.com/api/v1/carmen-marcos-art/nodes/af907170527b477f907170527b977fd8/binary/image?h=175" />
                     </div>
                 </div>
             </div>
