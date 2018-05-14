@@ -33,7 +33,7 @@ class FolderPage extends Component {
                         <Row>
                             {
                                 map(themes, (theme, index) => (
-                                    <ThemeCard theme={theme} />
+                                    <ThemeCard key={index} theme={theme} />
                                 ))
                             }
                         </Row>
