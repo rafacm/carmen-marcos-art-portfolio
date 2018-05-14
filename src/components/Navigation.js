@@ -40,7 +40,7 @@ class Navigation extends React.Component {
             <Nav className="ml-auto" navbar>
               <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <NavItem>
-                <NavLink href="/themes">Themes</NavLink>
+                <NavLink href="/themes"><strong class="text-success">Themes</strong></NavLink>
               </NavItem>
             </Dropdown>
            </Nav>
