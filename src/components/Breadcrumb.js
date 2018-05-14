@@ -39,7 +39,7 @@ class Breadcrumb extends Component {
                               </li>
                             ))
                         }
-                          <li key={crumbs.length} className="breadcrumb-item active" aria-current="page">
+                          <li key={crumbs.length + 1} className="breadcrumb-item active" aria-current="page">
                             {currentNode.displayName}
                           </li>
                     </Fragment>
