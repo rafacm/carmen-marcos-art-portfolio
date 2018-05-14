@@ -1,6 +1,6 @@
 # Carmen Marcos Art
 
-This site was built with React Static [basic example](examples/basic) using content managed with [Gentics Mesh](https://getmesh.io/).
+This is built with [React Static](https://react-static.js.org/) and content managed with [Gentics Mesh](https://getmesh.io/).
 
 <img src="doc/carmen-marcos-art-screenshot.png" align="center" width="100%">
 
