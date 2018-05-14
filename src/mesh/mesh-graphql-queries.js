@@ -140,7 +140,7 @@ const allThemesWithArtworksQuery = `
           }
         }
       }
-      children {
+      children(perPage: 100) {
         elements {
           uuid
           path
