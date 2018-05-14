@@ -7,7 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
+  Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap'
@@ -25,6 +25,7 @@ class Navigation extends React.Component {
     };
   }
   toggle() {
+    console.log("Navigation > toggle")
     this.setState({
       isOpen: !this.state.isOpen
     });
@@ -32,32 +33,17 @@ class Navigation extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar color="white" light expand="md">
           <NavbarBrand href="/"><img className="img-responsive" src={cmarcos} alt="Carmen Marcos"/></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Themes
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Diario de dibujante
-                  </DropdownItem>
-                  <DropdownItem>
-                  Paisajes en extinción
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                  Las puertas del cielo
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <NavItem>
-                <NavLink href="/about">About</NavLink>
+                <NavLink href="/themes">Themes</NavLink>
               </NavItem>
-            </Nav>
+            </Dropdown>
+           </Nav>
           </Collapse>
         </Navbar>
       </div>
