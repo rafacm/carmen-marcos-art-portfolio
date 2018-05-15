@@ -1,6 +1,5 @@
 # Carmen Marcos Art
-
-This is built with [React Static](https://react-static.js.org/) and content managed with [Gentics Mesh](https://getmesh.io/).
+Built with [React Static](https://react-static.js.org/) and content managed with [Gentics Mesh](https://getmesh.io/).
 
 <img src="doc/carmen-marcos-art-screenshot.png" align="center" width="100%">
 
@@ -15,7 +14,7 @@ yarn start
 To suggest changes, submit a PR!
 
 ## Gentics Mesh
-Please, note that the data displayed by this app comes from my own Gentics Mesh instance!
+Please, note that the data displayed by this app comes from my very own [Gentics Mesh](https://getmesh.io/) instance!
 
 To get your own local [Gentics Mesh](https://getmesh.io/) instance up and running with docker do
 ``` 
