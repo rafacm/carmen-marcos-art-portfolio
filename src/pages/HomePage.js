@@ -13,10 +13,10 @@ class HomePage extends Component {
     const node = this.props.node
     // console.log('node: ', node)
     const featuredArtworks = this.props.featuredArtworks
-    console.log('HomePage > featuredArtworks: ', featuredArtworks)
+    //console.log('HomePage > featuredArtworks: ', featuredArtworks)
     // TODO: clean up path access
     const artworksToShow = featuredArtworks.node.children.elements[0].fields.artworks
-    console.log('HomePage > artworksToShow: ', artworksToShow)
+    //console.log('HomePage > artworksToShow: ', artworksToShow)
 
     return (
         <Container>

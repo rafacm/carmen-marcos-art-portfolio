@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {
   Collapse,
   Navbar,
@@ -40,7 +40,7 @@ class Navigation extends React.Component {
             <Nav className="ml-auto" navbar>
               <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <NavItem>
-                <NavLink href="/themes"><strong class="text-success">Themes</strong></NavLink>
+                <NavLink href="/themes"><strong className="text-success">Themes</strong></NavLink>
               </NavItem>
             </Dropdown>
            </Nav>
