@@ -1,8 +1,18 @@
 {
-  "name": "react-static-example-gentics-mesh",
+  "name": "carmen-marcos-art-portfolio",
   "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
+  "homepage": "https://github.com/rafacm/carmen-marcos-art-portfolio",
+  "author" : {
+    "name" : "Rafael Cordones",
+    "e-mail" : "rafael@cordones.me",
+    "url" : "http://rafael.cordones.me"
+  },
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/rafacm/carmen-marcos-art-portfolio.git"
+  }
   "scripts": {
     "start": "react-static start",
     "stage": "react-static build --staging",
