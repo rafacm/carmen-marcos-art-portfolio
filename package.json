@@ -4,14 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "homepage": "https://github.com/rafacm/carmen-marcos-art-portfolio",
-  "author" : {
-    "name" : "Rafael Cordones",
-    "e-mail" : "rafael@cordones.me",
-    "url" : "http://rafael.cordones.me"
+  "author": {
+    "name": "Rafael Cordones",
+    "e-mail": "rafael@cordones.me",
+    "url": "http://rafael.cordones.me"
   },
-  "repository" :
-  { "type" : "git"
-  , "url" : "https://github.com/rafacm/carmen-marcos-art-portfolio.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafacm/carmen-marcos-art-portfolio.git"
   },
   "scripts": {
     "start": "react-static start",
