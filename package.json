@@ -12,7 +12,7 @@
   "repository" :
   { "type" : "git"
   , "url" : "https://github.com/rafacm/carmen-marcos-art-portfolio.git"
-  }
+  },
   "scripts": {
     "start": "react-static start",
     "stage": "react-static build --staging",
