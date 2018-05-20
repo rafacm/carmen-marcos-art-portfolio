@@ -1,13 +1,14 @@
+import { GraphQLClient } from 'graphql-request'
+import React, { Component } from 'react'
 import MeshApiClient from './src/mesh/mesh-api-client'
 import MeshQueries from './src/mesh/mesh-graphql-queries'
-import { GraphQLClient } from 'graphql-request'
 
 const MESH_PROJECT = 'carmen-marcos-art'
 const MESH_HOST = 'http://cms.casadelhuerto.com'
 const MESH_API = `${MESH_HOST}/api/v1`
 const MESH_GRAPHQL_API = `${MESH_API}/${MESH_PROJECT}/graphql/`
 const MESH_LANGUAGE = 'de'
-const MESH_API_CLIENT_LOGGING = true
+const MESH_API_CLIENT_LOGGING = false
 
 const SITE_ROOT = 'http://carmen-marcos.art/'
 
@@ -20,6 +21,7 @@ const meshGraphqlClient = new GraphQLClient(MESH_GRAPHQL_API)
 //})
 
 export default {
+  siteRoot: SITE_ROOT,
   getSiteData: () => ({
     title: 'Carmen Marcos',
     siteRoot: SITE_ROOT,
@@ -28,23 +30,23 @@ export default {
     meshProject: MESH_PROJECT,
     //TODO: projectNode: projectNode
   }),
-  getRoutes: async () => {    
+  getRoutes: async () => {
     const projectNode = await meshRestApiClient.getNodeByWebRootPath('/')
     const whoami = await meshGraphqlClient.request(MeshQueries.whoamiQuery)
-    console.log('static.config.js > whoami: ', whoami)
+    //console.log('static.config.js > whoami: ', whoami)
 
     const featuredWorksForHomePage = await meshGraphqlClient.request(MeshQueries.featuredArtworksQuery)
-    console.log('static.config.js > featuredWorksForHomePage: ', featuredWorksForHomePage)
+    //console.log('static.config.js > featuredWorksForHomePage: ', featuredWorksForHomePage)
 
     /*
      * Artworks
      */
     const generateAllArtworkPagesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
       const allArtworks = await meshGraphqlClient.request(MeshQueries.allArtworksQuery)
-      console.log('static.config.js > allArtworks: ', allArtworks)
+      //console.log('static.config.js > allArtworks: ', allArtworks)
 
       return allArtworks.nodes.elements.map( artwork => {
-        console.log('static.config.js > generateAllArtworkPagesRoutes > artwork: ', artwork)
+        //console.log('static.config.js > generateAllArtworkPagesRoutes > artwork: ', artwork)
         return {
           path: artwork.path,
           component: 'src/pages/ArtworkPage',
@@ -58,19 +60,19 @@ export default {
     }
 
     // We cannot use await at top-level: https://github.com/tc39/ecmascript-asyncawait/issues/9
-    const allArtworkPagesRoutes = 
+    const allArtworkPagesRoutes =
       await generateAllArtworkPagesRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
-    console.log('static.config.js > allArtworkPagesRoutes: ', allArtworkPagesRoutes)
+    //console.log('static.config.js > allArtworkPagesRoutes: ', allArtworkPagesRoutes)
 
     /*
      * Themes
      */
     const generateAllThemePagesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
       const allThemes = await meshGraphqlClient.request(MeshQueries.allThemesWithArtworksQuery)
-      console.log('static.config.js > allThemes: ', allThemes)
+      //console.log('static.config.js > allThemes: ', allThemes)
 
       return allThemes.nodes.elements.map( theme => {
-        console.log('static.config.js > generateAllThemePagesRoutes > themes: ', theme)
+        //console.log('static.config.js > generateAllThemePagesRoutes > themes: ', theme)
         return {
           path: theme.path,
           component: 'src/pages/ThemePage',
@@ -84,19 +86,19 @@ export default {
     }
 
     // We cannot use await at top-level: https://github.com/tc39/ecmascript-asyncawait/issues/9
-    const allThemePagesRoutes = 
+    const allThemePagesRoutes =
       await generateAllThemePagesRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
-    console.log('static.config.js > allThemePagesRoutes: ', allThemePagesRoutes)
+    //console.log('static.config.js > allThemePagesRoutes: ', allThemePagesRoutes)
 
     /*
      * Folders
      */
     const generateAllFolderPagesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
       const allFolders = await meshGraphqlClient.request(MeshQueries.allFoldersQuery)
-      console.log('static.config.js > allFolders: ', allFolders)
+      //console.log('static.config.js > allFolders: ', allFolders)
 
       return allFolders.node.children.elements.map( folder => {
-        console.log('static.config.js > generateAllFolderPagesRoutes > folders: ', folder)
+        //console.log('static.config.js > generateAllFolderPagesRoutes > folders: ', folder)
         return {
           path: folder.path,
           component: 'src/pages/FolderPage',
@@ -110,9 +112,9 @@ export default {
     }
 
     // We cannot use await at top-level: https://github.com/tc39/ecmascript-asyncawait/issues/9
-    const allFolderPagesRoutes = 
+    const allFolderPagesRoutes =
       await generateAllFolderPagesRoutes(meshRestApiClient, meshGraphqlClient, projectNode)
-    console.log('static.config.js > allFolderPagesRoutes: ', allFolderPagesRoutes)
+    //console.log('static.config.js > allFolderPagesRoutes: ', allFolderPagesRoutes)
 
     return [
       {
@@ -135,4 +137,35 @@ export default {
       },
     ]
   },
+  Document: ({ Html, Head, Body, children, siteData, renderMeta }) => (
+    <Html lang="en-US">
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer','GTM-5B2FVWH');
+                `,
+              }}
+            />
+      </Head>
+      <Body>
+      <noscript>
+          <iframe
+            title="google-tag-manager"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5B2FVWH"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        {children}
+      </Body>
+    </Html>
+  ),
 }
