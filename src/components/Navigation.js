@@ -10,7 +10,8 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap'
+  DropdownItem
+} from 'reactstrap'
 
 import { withSiteData, withRouteData, Link } from 'react-static'
 import cmarcos from '../assets/images/cmarcos-signature.jpg'
@@ -34,16 +35,17 @@ class Navigation extends React.Component {
     return (
       <div>
         <Navbar color="white" light expand="md">
-          <NavbarBrand href="/"><img className="img-responsive" src={cmarcos} alt="Carmen Marcos"/></NavbarBrand>
+          <NavbarBrand href="/"><img className="img-responsive" src={cmarcos} alt="Carmen Marcos" /></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <NavItem>
-                <NavLink href="/themes"><strong className="text-success">Themes</strong></NavLink>
-              </NavItem>
-            </Dropdown>
-           </Nav>
+                <NavItem>
+                  <NavLink href="/themes"><strong className="text-success">Themes</strong></NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="mailto:info@carmen-marcos.art"><strong className="text-info">Contact</strong></NavLink>
+                </NavItem>
+            </Nav>
           </Collapse>
         </Navbar>
       </div>
