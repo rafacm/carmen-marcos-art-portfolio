@@ -6000,10 +6000,6 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
-react-static-routes@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-static-routes/-/react-static-routes-1.0.0.tgz#73882f1569498d7ce5b4b1d4057ff642b1eea40c"
-
 react-static@^5.9.1:
   version "5.9.5"
   resolved "https://registry.yarnpkg.com/react-static/-/react-static-5.9.5.tgz#50b79df6c949fc7c926aba3561499e1497fd51aa"

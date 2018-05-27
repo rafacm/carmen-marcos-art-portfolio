@@ -36,7 +36,6 @@
     "react-render-html": "^0.6.0",
     "react-router": "^4.2.0",
     "react-static": "^5.9.1",
-    "react-static-routes": "^1.0.0",
     "reactstrap": "^6.0.1",
     "string-strip-html": "^1.4.2"
   },
