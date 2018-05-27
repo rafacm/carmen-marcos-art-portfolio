@@ -9,6 +9,10 @@
     "e-mail": "rafael@cordones.me",
     "url": "http://rafael.cordones.me"
   },
+  "engines": {
+    "node": ">= 8.11",
+    "yarn": ">= 1.7"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/rafacm/carmen-marcos-art-portfolio.git"
