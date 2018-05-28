@@ -40,7 +40,7 @@
     "string-strip-html": "^1.4.2"
   },
   "devDependencies": {
-    "eslint-config-react-tools": "1.x.x",
-    "serve": "^6.5.8"
+    "eslint-config-react-tools": "1.2.5",
+    "serve": "6.5.8"
   }
 }
