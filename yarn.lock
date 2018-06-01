@@ -395,7 +395,7 @@ arraybuffer.slice@~0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/arraybuffer.slice/-/arraybuffer.slice-0.0.7.tgz#3bbc4275dd584cc1b10809b89d4e8b63a69e7675"
 
-arrayiffy-if-string@*, arrayiffy-if-string@^3.2.0:
+arrayiffy-if-string@*:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/arrayiffy-if-string/-/arrayiffy-if-string-3.2.1.tgz#22f6c55f3a22a600aff70c791f0fe11863ab3e09"
 
@@ -2620,6 +2620,10 @@ enhanced-resolve@^3.4.0:
     object-assign "^4.0.1"
     tapable "^0.2.7"
 
+ent@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ent/-/ent-2.2.0.tgz#e964219325a21d05f44466a2f686ed6ce5f5dd1d"
+
 entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
@@ -4480,7 +4484,7 @@ lodash.isobject@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
 
-lodash.isplainobject@*, lodash.isplainobject@latest:
+lodash.isplainobject@latest:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
 
@@ -4496,7 +4500,7 @@ lodash.tonumber@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/lodash.tonumber/-/lodash.tonumber-4.0.3.tgz#0b96b31b35672793eb7f5a63ee791f1b9e9025d9"
 
-lodash.trim@*:
+lodash.trim@^4.5.1:
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/lodash.trim/-/lodash.trim-4.5.1.tgz#36425e7ee90be4aa5e27bcebb85b7d11ea47aa57"
 
@@ -6912,25 +6916,11 @@ strict-uri-encode@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
 
-string-character-is-astral-surrogate@latest:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/string-character-is-astral-surrogate/-/string-character-is-astral-surrogate-1.1.0.tgz#3a19902b7d44d9f2b53a7efb81e791ec366229a2"
-
 string-collapse-leading-whitespace@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/string-collapse-leading-whitespace/-/string-collapse-leading-whitespace-1.1.0.tgz#91e757f69023c1720cfba4d769c8eb4d091229e4"
 
-string-match-left-right@^3.1.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/string-match-left-right/-/string-match-left-right-3.3.1.tgz#fb47a94dd0bf8337ebd1901851fcea5167fb3799"
-  dependencies:
-    arrayiffy-if-string "^3.2.0"
-    check-types-mini latest
-    is-natural-number "^4.0.1"
-    lodash.isplainobject latest
-    string-character-is-astral-surrogate latest
-
-string-replace-slices-array@^2.2.1:
+string-replace-slices-array@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/string-replace-slices-array/-/string-replace-slices-array-2.2.2.tgz#4e3d46496828601718e8a9b6c65b0b5edbd6f4a1"
   dependencies:
@@ -6938,7 +6928,7 @@ string-replace-slices-array@^2.2.1:
     is-natural-number-string "*"
     ordinal-number-suffix "^0.1.1"
 
-string-slices-array-push@^2.7.0:
+string-slices-array-push@^2.8.1:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/string-slices-array-push/-/string-slices-array-push-2.8.1.tgz#d193d381fac12b6ade55ffdde7f9b42df86cdc9a"
   dependencies:
@@ -6949,16 +6939,16 @@ string-slices-array-push@^2.7.0:
     ranges-merge "^3.2.0"
     string-collapse-leading-whitespace "^1.1.0"
 
-string-strip-html@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/string-strip-html/-/string-strip-html-1.4.2.tgz#274822027730e49b09471003a93d9eb748ad7912"
+string-strip-html@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/string-strip-html/-/string-strip-html-2.0.0.tgz#ae1a6e4e1c546f934a135aa6bec1c20c2f6a5cc4"
   dependencies:
     check-types-mini latest
-    lodash.isplainobject "*"
-    lodash.trim "*"
-    string-match-left-right "^3.1.1"
-    string-replace-slices-array "^2.2.1"
-    string-slices-array-push "^2.7.0"
+    ent "^2.2.0"
+    lodash.isplainobject latest
+    lodash.trim "^4.5.1"
+    string-replace-slices-array "^2.2.2"
+    string-slices-array-push "^2.8.1"
 
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"
