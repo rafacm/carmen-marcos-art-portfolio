@@ -20,12 +20,6 @@ const meshGraphqlClient = new GraphQLClient(MESH_GRAPHQL_API)
 //  },
 //})
 
-/*
- * NOTES
- * 
- * - Breadcrumbs have to be reversed due to https://github.com/gentics/mesh/issues/398
- */
-
 export default {
   siteRoot: SITE_ROOT,
   getSiteData: () => ({
@@ -47,18 +41,18 @@ export default {
     /*
      * Artworks
      */
-    const generateAllArtworkPagesRoutes = async function (meshRestApiClient, meshGraphqlClient, projectNode) {
+    const generateAllArtworkPagesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
       const allArtworks = await meshGraphqlClient.request(MeshQueries.allArtworksQuery)
       //console.log('static.config.js > allArtworks: ', allArtworks)
 
-      return allArtworks.nodes.elements.map(artwork => {
+      return allArtworks.nodes.elements.map( artwork => {
         //console.log('static.config.js > generateAllArtworkPagesRoutes > artwork: ', artwork)
         return {
           path: artwork.path,
           component: 'src/pages/ArtworkPage',
           getData: () => ({
             node: artwork,
-            breadcrumb: artwork.breadcrumb.reverse(),
+            breadcrumb: artwork.breadcrumb,
             artwork
           }),
         }
@@ -73,18 +67,18 @@ export default {
     /*
      * Themes
      */
-    const generateAllThemePagesRoutes = async function (meshRestApiClient, meshGraphqlClient, projectNode) {
+    const generateAllThemePagesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
       const allThemes = await meshGraphqlClient.request(MeshQueries.allThemesWithArtworksQuery)
       //console.log('static.config.js > allThemes: ', allThemes)
 
-      return allThemes.nodes.elements.map(theme => {
+      return allThemes.nodes.elements.map( theme => {
         //console.log('static.config.js > generateAllThemePagesRoutes > themes: ', theme)
         return {
           path: theme.path,
           component: 'src/pages/ThemePage',
           getData: () => ({
             node: theme,
-            breadcrumb: theme.breadcrumb.reverse(),
+            breadcrumb: theme.breadcrumb,
             theme
           }),
         }
@@ -99,14 +93,13 @@ export default {
     /*
      * Folders
      */
-    const generateAllFolderPagesRoutes = async function (meshRestApiClient, meshGraphqlClient, projectNode) {
+    const generateAllFolderPagesRoutes = async function(meshRestApiClient, meshGraphqlClient, projectNode) {
       const allFolders = await meshGraphqlClient.request(MeshQueries.allFoldersQuery)
       //console.log('static.config.js > allFolders: ', allFolders)
 
       return allFolders.node.children.elements
-        .filter(folder => {
-          !folder.path.includes("exhibitions")
-        }).map(folder => {
+      .filter(folder => folder.path.includes("themes"))
+      .map(folder => {
           //console.log('static.config.js > generateAllFolderPagesRoutes > folders: ', folder)
           return {
             path: folder.path,
@@ -153,19 +146,19 @@ export default {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <script
-          dangerouslySetInnerHTML={{
-            __html: `
+              dangerouslySetInnerHTML={{
+                __html: `
                   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                     })(window,document,'script','dataLayer','GTM-5B2FVWH');
                 `,
-          }}
-        />
+              }}
+            />
       </Head>
       <Body>
-        <noscript>
+      <noscript>
           <iframe
             title="google-tag-manager"
             src="https://www.googletagmanager.com/ns.html?id=GTM-5B2FVWH"
