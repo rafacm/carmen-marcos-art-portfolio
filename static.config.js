@@ -103,18 +103,21 @@ export default {
       const allFolders = await meshGraphqlClient.request(MeshQueries.allFoldersQuery)
       //console.log('static.config.js > allFolders: ', allFolders)
 
-      return allFolders.node.children.elements.map(folder => {
-        //console.log('static.config.js > generateAllFolderPagesRoutes > folders: ', folder)
-        return {
-          path: folder.path,
-          component: 'src/pages/FolderPage',
-          getData: () => ({
-            node: folder,
-            breadcrumb: folder.breadcrumb.reverse(),
-            folder
-          }),
-        }
-      })
+      return allFolders.node.children.elements
+        .filter(folder => {
+          !folder.path.includes("exhibitions")
+        }).map(folder => {
+          //console.log('static.config.js > generateAllFolderPagesRoutes > folders: ', folder)
+          return {
+            path: folder.path,
+            component: 'src/pages/FolderPage',
+            getData: () => ({
+              node: folder,
+              breadcrumb: folder.breadcrumb.reverse(),
+              folder
+            }),
+          }
+        })
     }
 
     // We cannot use await at top-level: https://github.com/tc39/ecmascript-asyncawait/issues/9
