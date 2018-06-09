@@ -20,6 +20,11 @@ const meshGraphqlClient = new GraphQLClient(MESH_GRAPHQL_API)
 //  },
 //})
 
+/*
+ * NOTES
+ * 
+ * - Breadcrumbs have to be reversed due to https://github.com/gentics/mesh/issues/398
+ */
 export default {
   siteRoot: SITE_ROOT,
   getSiteData: () => ({
@@ -52,7 +57,7 @@ export default {
           component: 'src/pages/ArtworkPage',
           getData: () => ({
             node: artwork,
-            breadcrumb: artwork.breadcrumb,
+            breadcrumb: artwork.breadcrumb.reverse(),
             artwork
           }),
         }
@@ -78,7 +83,7 @@ export default {
           component: 'src/pages/ThemePage',
           getData: () => ({
             node: theme,
-            breadcrumb: theme.breadcrumb,
+            breadcrumb: theme.breadcrumb.reverse(),
             theme
           }),
         }
