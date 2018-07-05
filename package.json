@@ -37,7 +37,7 @@
     "react-render-html": "^0.6.0",
     "react-static": "^5.9.1",
     "reactstrap": "^6.0.1",
-    "string-strip-html": "^2.0.0"
+    "string-strip-html": "^3.0.0"
   },
   "devDependencies": {
     "eslint-config-react-tools": "1.2.5",
