@@ -20,7 +20,6 @@ class HomePage extends Component {
 
     return (
         <Container>
-          <ExhibitionAnnouncement/>
           <ArtworksGrid artworks={artworksToShow} />
         </Container>
     )
