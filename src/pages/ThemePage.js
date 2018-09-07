@@ -7,7 +7,7 @@ import ArtworksGrid from '../components/ArtworksGrid';
 import stripHtml from 'string-strip-html';
 import renderHtml from 'react-render-html';
 
-class ThemesPage extends React.Component {
+class ThemePage extends React.Component {
     static propTypes = {
         breadcrumb: PropTypes.arrayOf(PropTypes.object).isRequired,
         node: PropTypes.object.isRequired,
@@ -32,4 +32,4 @@ class ThemesPage extends React.Component {
     }
 }
 
-export default withSiteData(withRouteData(ThemesPage))
+export default withSiteData(withRouteData(ThemePage))
