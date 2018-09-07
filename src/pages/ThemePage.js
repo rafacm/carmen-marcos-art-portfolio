@@ -23,7 +23,6 @@ class ThemePage extends React.Component {
                 <Breadcrumb breadcrumb={this.props.breadcrumb} currentNode={this.props.node} />
                 <Container>
                     <h1>{this.props.theme.fields.title}</h1>
-                    <p>{stripHtml(this.props.theme.fields.teaser)}</p>
                     <ArtworksGrid artworks={themeArtworks} />
                     <p>{renderHtml(this.props.theme.fields.description)}</p>
                 </Container>
