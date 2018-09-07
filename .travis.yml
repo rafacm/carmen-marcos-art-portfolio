@@ -19,4 +19,6 @@ deploy:
   bucket: carmen-marcos.art
   local-dir: dist
   region: eu-central-1
+  skip_cleanup: true
+  acl: public_read
   
