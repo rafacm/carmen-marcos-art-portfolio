@@ -1,13 +1,22 @@
 sudo: false
 language: node_js
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
-  - export PATH=$HOME/.yarn/bin:$PATH
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
+- export PATH=$HOME/.yarn/bin:$PATH
 script: yarn build
 cache:
   yarn: true
 node_js:
-  - "8"
+- '8'
 branches:
   only:
   - master
+deploy:
+  provider: s3
+  access_key_id: AKIAJQG6HE2Y5HYCFD5A
+  secret_access_key:
+    secure: qRJmewgNFzsqd8wC1bZpUQy3kzATG/koGureZ8C4N+hEGljlSSjmYnMPm0sb308A07XaxaBg25tzS6kamy6lIFnrIbOkziUlz1it+wnat8/K/FK+NAcHiz1/hAjNqY/CgEp/Eowszc7fhHoKbRxF1Q06fwxdfA/8D8X/X0pGQRI+1KdV7R9ZAnGzknPWr6ROC/bV0rsaIxI016KXun0CCTaU8P48ry9XS0FZ1AYx9fOhLmHSoYO1LgcATfn+aTYsk/u+FhQXQqHEHXx3GIcsuzE3CmBgmdhuruKJMtRsdtzZQvZRLLJRrVHiDgIiNNgEsIgIUVZA8flV4JFbBpROeuVZ4rcotmbmvsBFU2vdKIKfxaBeMfb2kXvA0BT7RLScLDU0b4Q2+g6m5zQCcPcC1jrWOVD0v+N/7KYLbpnu7auQSxki/nGjeqwg/N7j6VsRH/Nq/hv+k5Q0NvZehnoPYr0fGEeJOYCao2cETaTVuTFLMTvu1vsNIfdpWNEomf1xyGvY4u+zSTs4Z9KAy4biiHezrYtkcaFRs0JNu/QE2C1Cg5VOKsrM09Km5gIEKx7U7/shlCxBMEsFgbLLxl9hUL1VacAWO3lX9ahFzBxDkWWD1Lrls1ZBFx/gzSRWM3lkRgLAVrCpkqB9dK/BtBWXK41ZILKV8Pdw5cxXcv9RXs4=
+  bucket: carmen-marcos.art
+  local-dir: dist
+  region: eu-central-1
+  
