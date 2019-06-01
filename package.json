@@ -24,7 +24,7 @@
     "serve": "serve dist -p 3000"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "bootstrap": "^4.1.1",
     "graphql-request": "^1.6.0",
     "lodash": "^4.17.10",
